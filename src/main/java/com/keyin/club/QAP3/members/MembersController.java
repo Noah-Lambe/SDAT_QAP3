@@ -17,7 +17,8 @@ public class MembersController {
     @GetMapping
     public ResponseEntity<List<Members>> getAllMembers() {
         try {
-            return ResponseEntity.ok(membersService.getAllMembers());
+            List<Members> members = membersService.getAllMembers();
+            return ResponseEntity.ok(members);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

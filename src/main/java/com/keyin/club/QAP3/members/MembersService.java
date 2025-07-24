@@ -68,7 +68,8 @@ public class MembersService {
         membersRepository.deleteById(id);
     }
 
-    // Additional methods for filtering by membership type can be added here
+
+
     // public List<Members> findByMembershipType(String type) {
     //     return membersRepository.findByMembershipType(type);
     // }
