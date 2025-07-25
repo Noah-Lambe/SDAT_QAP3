@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mysql:8
+    container_name: golfclub_db
+    environment:
+      MYSQL_DATABASE: QAP3_API_DB
+      MYSQL_ROOT_PASSWORD: Keyin202!
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: golfclub_app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/QAP3_API_DB
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Keyin202!
+
+volumes:
+  mysql_data:

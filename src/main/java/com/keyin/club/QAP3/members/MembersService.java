@@ -68,8 +68,6 @@ public class MembersService {
         membersRepository.deleteById(id);
     }
 
-
-
     // public List<Members> findByMembershipType(String type) {
     //     return membersRepository.findByMembershipType(type);
     // }

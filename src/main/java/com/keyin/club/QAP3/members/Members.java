@@ -1,9 +1,13 @@
 package com.keyin.club.QAP3.members;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.club.QAP3.tournaments.Tournaments;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,12 +25,23 @@ public class Members {
     private int membershipDurationInMonths;
 
     @ManyToMany
-    private List<Tournaments> tournaments;
+    @JoinTable(
+            name = "tournament_members",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "tournament_id")
+    )
+    @JsonIgnoreProperties("members")
+    private List<Tournaments> tournaments = new ArrayList<>();
 
-
-    public Members() {
-        // Default constructor for JPA
+    public List<Tournaments> getTournaments() {
+        return tournaments;
     }
+
+    public void setTournaments(List<Tournaments> tournaments) {
+        this.tournaments = tournaments;
+    }
+
+    public Members() {}
 
     public Members(Long id, String name, String address, String email, String phoneNumber, LocalDate membershipStartDate, int membershipDurationInMonths) {
         this.id = id;

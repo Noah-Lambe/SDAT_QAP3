@@ -25,7 +25,7 @@ public class TournamentsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tournaments> getTournamentById(long id) {
+    public ResponseEntity<Tournaments> getTournamentById(@PathVariable long id) {
         try {
             Tournaments tournament = tournamentsService.getTournamentById(id);
             if (tournament != null) {
@@ -66,6 +66,20 @@ public class TournamentsController {
         try {
             Tournaments createdTournament = tournamentsService.createTournament(tournament);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdTournament);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/{tournamentId}/members/{memberId}")
+    public ResponseEntity<Tournaments> addMemberToTournament(
+            @PathVariable Long tournamentId,
+            @PathVariable Long memberId) {
+        try {
+            Tournaments updatedTournament = tournamentsService.addMemberToTournament(tournamentId, memberId);
+            return ResponseEntity.ok(updatedTournament);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

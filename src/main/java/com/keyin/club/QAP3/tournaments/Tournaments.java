@@ -1,5 +1,8 @@
 package com.keyin.club.QAP3.tournaments;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.club.QAP3.members.Members;
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +22,7 @@ public class Tournaments {
     private double cashPrize;
 
     @ManyToMany(mappedBy = "tournaments")
+    @JsonIgnoreProperties("tournaments")
     private List<Members> members;
 
     public Tournaments() {
