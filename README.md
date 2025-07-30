@@ -78,16 +78,9 @@ docker compose up --build
 
 > **Note:** This project is configured to connect to a remote AWS RDS MySQL database. If you wish to run it with a local MySQL instance, update `SPRING_DATASOURCE_URL` in the Docker Compose environment variables accordingly.
 
-## AWS RDS Setup
+## Cloud Deployment Step (AWS RDS)
 
-* The application is configured to connect to an Amazon RDS MySQL instance.
-* Update the following environment variables in `docker-compose.yml`:
-
-```yaml
-SPRING_DATASOURCE_URL: jdbc:mysql://<your-RDS-endpoint>:3306/QAP3_API_DB
-SPRING_DATASOURCE_USERNAME: <your-username>
-SPRING_DATASOURCE_PASSWORD: <your-password>
-```
+As part of the assignment requirements, this project was configured to use an Amazon RDS database. While the default Docker setup uses a local MySQL container, the application was successfully connected to RDS during development and testing, as shown in the included screenshots.
 
 ## Testing
 
