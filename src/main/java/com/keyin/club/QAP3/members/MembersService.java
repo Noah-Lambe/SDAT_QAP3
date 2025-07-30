@@ -59,6 +59,8 @@ public class MembersService {
             return membersRepository.findByNameContainingIgnoreCase(name);
         } else if (email != null && !email.isEmpty()) {
             return membersRepository.findByEmailContainingIgnoreCase(email);
+        } else if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            return membersRepository.findByPhoneNumber(phoneNumber);
         } else {
             return getAllMembers();
         }
