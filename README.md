@@ -98,5 +98,6 @@ SPRING_DATASOURCE_PASSWORD: <your-password>
 
 * Java 21
 * Spring Boot
-* MySQL (compatible with AWS RDS)
+* MySQL 
+* AWS RDS
 * Docker
